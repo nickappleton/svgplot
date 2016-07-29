@@ -10,4 +10,11 @@ if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_LIST_DIR})
 endif()
 
 add_library(svgplot STATIC svgplot.c)
+
+if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+  set_property(TARGET svgplot APPEND_STRING PROPERTY COMPILE_FLAGS " /W3")
+else()
+  set_property(TARGET svgplot APPEND_STRING PROPERTY COMPILE_FLAGS " -Wall")
+endif()
+
 target_include_directories(svgplot PRIVATE "../..")
