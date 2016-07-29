@@ -18,3 +18,8 @@ else()
 endif()
 
 target_include_directories(svgplot PRIVATE "../..")
+
+if (UNIX)
+  target_link_libraries(svgplot m)
+endif()
+
