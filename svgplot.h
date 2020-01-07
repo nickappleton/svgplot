@@ -93,6 +93,7 @@ svgplot_finalise
     ,double                         height_cm
     ,double                         border_cm
     ,FILE                          *dest
+    ,int                            write_svg_header
     );
 
 #endif /* SVGPLOT_H */

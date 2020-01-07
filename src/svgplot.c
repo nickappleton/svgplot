@@ -141,6 +141,7 @@ svgplot_finalise
     ,double                         height_cm
     ,double                         border_cm
     ,FILE                          *dest
+    ,int                            write_svg_header
     )
 {
 	double data_left = border_cm * 100;
@@ -156,11 +157,17 @@ svgplot_finalise
 	unsigned colidx = 0;
 	const char *colours[] = {"red", "blue", "green", "black"};
 
+	if (write_svg_header) {
+		fprintf
+			(dest
+			,"<?xml version=\"1.0\" standalone=\"yes\"?>\n"
+			 "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n"
+			);
+	}
+
 	fprintf
 		(dest
-		,"<?xml version=\"1.0\" standalone=\"yes\"?>\n"
-		 "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n"
-		 "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"%lfcm\" height=\"%lfcm\" viewBox=\"0 0 %lf %lf\" version=\"1.1\" fill=\"black\">\n"
+		,"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"%lfcm\" height=\"%lfcm\" viewBox=\"0 0 %lf %lf\" version=\"1.1\" fill=\"black\">\n"
 		,width_cm
 		,height_cm
 		,width_cm * 100
