@@ -10,6 +10,8 @@ endif()
 
 project(svgplot VERSION 0.1.0 LANGUAGES C)
 
+option(SVGPLOT_BUILD_EXAMPLES "Build example application" ON)
+
 set(SVGPLOT_PUBLIC_INCLUDES svgplot.h)
 
 add_library(svgplot STATIC src/svgplot.c src/space_iter.h ${SVGPLOT_PUBLIC_INCLUDES})
@@ -26,6 +28,10 @@ target_include_directories(svgplot PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOU
 
 if (UNIX)
   target_link_libraries(svgplot pthread)
+endif()
+
+if (SVGPLOT_BUILD_EXAMPLES)
+  add_subdirectory(example)
 endif()
 
 if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_LIST_DIR})

@@ -63,5 +63,6 @@ int main(int argc, char *argv[])
 		,12
 		,0.2
 		,stdout
+		,1
 		);
 }
